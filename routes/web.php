@@ -3,26 +3,57 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\User;
 
 Route::get('/', function () {
 
-    // -------------- Forma pouco usual de se adicionar dados ao banco de dados
+    // --- Forma pouco usual de se adicionar dados ao banco de dados
     // $post = new Post();
     // $post->title = 'Meu título';
     // // $post->body = 'Meu body';
     // $post->save();
-    // -------------- Forma mais comum de se adicionar dados ao banco de dados
-    $post = Post::create([
-        'title' => 'meu segundo titulo',
-        'body' => 'meu segundo body'
-    ]);
+    // --- Forma mais comum de se adicionar dados ao banco de dados
+    // $post = Post::create([
+    //     'title' => 'meu segundo titulo',
+    //     'body' => 'meu segundo body'
+    // ]);
     
     // ----------------------------------------------------
-    // $post = Post::where('id', 1)->first();
+    // Consultando dados com Eloquent
+    // $post = Post::where('id', 3)->first();
     // $post = Post::where('body', 'LIKE', '%segundo%')->first();
+    // dd($post);
 
+    // ----------------------------------------------------
+    // Alterando dados com Eloquent
+    // $input = [
+    //     'title' => 'Gillian Jenkins',
+    //     'body' => 'Body alterado'
+    // ];
+    // $post = Post::find(3);
+    // $post->fill($input);
+    // $post->save();
+    // dd($post);
 
-    dd($post);
+    // ----------------------------------------------------
+    // Deletando dados com Eloquent
+    // $post = User::find(12);
+    // $post->delete();
+    // dd($post);
+
+    // ----------------------------------------------------
+    // Testando relações (1 para 1), através de consulta no banco.
+    // $user = User::with('profile')->find(11);
+    
+    // ----------------------------------------------------
+    // Criando relação, a partir do usuário.
+    // $user = User::with('profile')->find(10);
+    // $user->profile()->create([
+    //     'type' => 'PJ',
+    //     'document_number' => '923874283'
+    // ]);
+    // dd($user);
+
 
     return view('welcome');
 });
