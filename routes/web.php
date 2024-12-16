@@ -12,14 +12,14 @@ Route::get('/', function () {
     // // $post->body = 'Meu body';
     // $post->save();
     // -------------- Forma mais comum de se adicionar dados ao banco de dados
-    // $post = Post::create([
-    //     'title' => 'meu segundo titulo',
-    //     'body' => 'meu segundo body'
-    // ]);
+    $post = Post::create([
+        'title' => 'meu segundo titulo',
+        'body' => 'meu segundo body'
+    ]);
     
     // ----------------------------------------------------
     // $post = Post::where('id', 1)->first();
-    $post = Post::where('body', 'LIKE', '%segundo%')->first();
+    // $post = Post::where('body', 'LIKE', '%segundo%')->first();
 
 
     dd($post);
