@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->foreignId('user_id')
-                ->nullable()
                 ->after('id')
                 ->constrained()
                 ->cascadeOnDelete();

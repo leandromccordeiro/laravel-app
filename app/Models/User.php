@@ -46,10 +46,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function profile(){
+    public function profile()
+    {
         return $this->hasONe(Profile::class);
     }
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
+    }
+    public function roles() 
+    {
+        return $this->belongsToMany(Role::class);
     }
 }

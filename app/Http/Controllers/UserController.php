@@ -21,4 +21,12 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    public function create() {
+        return view('users.create');
+    }
+
+    public function store() {
+        dd('store');
+    }
 }

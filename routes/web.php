@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -52,8 +53,41 @@ Route::get('/', function () {
     //     'type' => 'PJ',
     //     'document_number' => '923874283'
     // ]);
+    
+    // ----------------------------------------------------
+    // Adicionando multiplos posts a determinado usuário (1 para n)
+    // $user = User::find(2);
+    // $user->posts()->createMany([
+    //     [
+    //         'title' => 'Primeiro título',
+    //         'body' => 'Primeiro body',
+    //     ],
+    //     [
+    //         'title' => 'Segundo título',
+    //         'body' => 'Segundo body',
+    //     ],
+    //     [
+    //         'title' => 'Terceiro título',
+    //         'body' => 'Terceiro body',
+    //     ],
+    // ]);
+    
+    // Consultando user e os relacionamentos profile e posts
+    // $user = User::with('profile', 'posts')->find(2);
     // dd($user);
 
+    // Consultando roles (n para n)
+    // $roles = Role::all();
+
+    // $user = User::find(1); //usuário
+    // $user->roles()->attach(4);//anexar cargo ao usuário
+    // $user->roles()->detach(3);//desanexar cargo ao usuário
+
+
+    // dd($user);
+
+
+    
 
     return view('welcome');
 });
@@ -66,5 +100,18 @@ Route::get('/', function () {
 //     ];
 // });
 
-Route::get('admin/usuarios', [UserController::class, 'index']);
-Route::get('admin/usuarios/{user}', [UserController::class, 'show']);
+Route::get('admin/usuarios', 
+    [UserController::class, 'index'])
+    ->name('users.index');
+
+Route::get('admin/usuarios/cadastrar', 
+    [UserController::class, 'create'])
+    ->name('users.create');
+
+Route::post('admin/usuarios/cadastrar', 
+    [UserController::class, 'store'])
+    ->name('users.store');
+
+Route::get('admin/usuarios/{user}', 
+    [UserController::class, 'show'])
+    ->name('users.show');
